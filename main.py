@@ -1,6 +1,7 @@
 import json
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
 
 
 def handler(event=None, context=None):
@@ -13,7 +14,8 @@ def handler(event=None, context=None):
     chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko")
     chrome_options.add_argument('window-size=1392x1150')
     chrome_options.add_argument("disable-gpu")
-    browser = webdriver.Chrome(executable_path="/opt/chromedriver", options=chrome_options)
+    service = Service("/opt/chromedriver")
+    browser = webdriver.Chrome(service=service, options=chrome_options)
 
     print("browser", browser)
 
