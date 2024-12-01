@@ -2,11 +2,13 @@
 
 
 echo "Downloading Chromium..."
-curl "https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Linux_x64%2F$CHROMIUM_VERSION%2Fchrome-linux.zip?generation=1652397748160413&alt=media" > /tmp/chromium.zip
-
+CHROMIUM_ROOT="http://commondatastorage.googleapis.com/chromium-browser-snapshots/Linux_x64"
+CHROMIUM_LATEST=`wget -q -O - "$CHROMIUM_ROOT/LAST_CHANGE"`
+wget $CHROMIUM_ROOT/$CHROMIUM_LATEST/chrome-linux.zip
 unzip /tmp/chromium.zip -d /tmp/
 mv /tmp/chrome-linux/ /opt/chrome
 
-curl "https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Linux_x64%2F$CHROMIUM_VERSION%2Fchromedriver_linux64.zip?generation=1652397753719852&alt=media" > /tmp/chromedriver_linux64.zip
+CHROMIUM_ROOT="http://commondatastorage.googleapis.com/chromium-browser-snapshots/Linux_x64"
+wget $CHROMIUM_ROOT/$CHROMIUM_LATEST/chromedriver_linux64.zip
 unzip /tmp/chromedriver_linux64.zip -d /tmp/
 mv /tmp/chromedriver_linux64/chromedriver /opt/chromedriver

@@ -1,7 +1,6 @@
 FROM public.ecr.aws/lambda/python:3.13 as stage
 
 RUN yum install -y -q sudo unzip
-ENV CHROMIUM_VERSION=1002910
 
 # Install Chromium
 COPY install-browser.sh /tmp/
