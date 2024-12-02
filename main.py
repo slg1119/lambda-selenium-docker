@@ -3,7 +3,6 @@ import json
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
 
 
 def handler(event=None, context=None):
@@ -35,8 +34,8 @@ def handler(event=None, context=None):
     chrome_options.add_argument('--no-first-run')
     chrome_options.add_argument('--window-size=1920,1080')
 
-    chrome_options.binary_location = "/usr/bin/google-chrome-stable"
-    service = Service(ChromeDriverManager().install())
+    chrome_options.binary_location = "/usr/bin/google-chrome"
+    service = Service(executable_path="/opt/chromedriver")
     driver = webdriver.Chrome(service=service, options=chrome_options)
 
 

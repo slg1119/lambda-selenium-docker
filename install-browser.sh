@@ -11,4 +11,11 @@ gpgcheck=1
 gpgkey=https://dl.google.com/linux/linux_signing_key.pub
 EOL
 rpm --import https://dl.google.com/linux/linux_signing_key.pub
-dnf install -y google-chrome-stable
+dnf install -y google-chrome
+
+CHROME_ROOT="http://commondatastorage.googleapis.com/chromium-browser-snapshots/Linux_x64"
+CHROME_LATEST=`wget -q -O - "$CHROME_ROT/LAST_CHANGE"`
+
+wget $CHROME_ROOT/$CHROME_LATEST/chromedriver_linux64.zip -P /tmp/
+unzip /tmp/chromedriver_linux64.zip -d /tmp/
+mv /tmp/chromedriver_linux64/chromedriver /opt/chromedriver
