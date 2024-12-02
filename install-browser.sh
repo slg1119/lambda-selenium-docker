@@ -1,12 +1,14 @@
 #!/bin/bash
 
-echo "Downloading Chromium..."
-CHROMIUM_ROOT="http://commondatastorage.googleapis.com/chromium-browser-snapshots/Linux_x64"
-CHROMIUM_LATEST=`wget -q -O - "$CHROMIUM_ROOT/LAST_CHANGE"`
-wget $CHROMIUM_ROOT/$CHROMIUM_LATEST/chrome-linux.zip -P /tmp/
-unzip /tmp/chrome-linux.zip -d /tmp/
-mv /tmp/chrome-linux/ /opt/chrome
+echo "Install Chrome"
 
-wget $CHROMIUM_ROOT/$CHROMIUM_LATEST/chromedriver_linux64.zip -P /tmp/
-unzip /tmp/chromedriver_linux64.zip -d /tmp/
-mv /tmp/chromedriver_linux64/chromedriver /opt/chromedriver
+tee /etc/yum.repos.d/google-chrome.repo << EOL
+[google-chrome]
+name=google-chrome
+baseurl=https://dl.google.com/linux/chrome/rpm/stable/x86_64
+enabled=1
+gpgcheck=1
+gpgkey=https://dl.google.com/linux/linux_signing_key.pub
+EOL
+rpm --import https://dl.google.com/linux/linux_signing_key.pub
+dnf install -y google-chrome-stable
