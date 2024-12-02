@@ -14,7 +14,7 @@ rpm --import https://dl.google.com/linux/linux_signing_key.pub
 dnf install -y google-chrome
 
 CHROME_ROOT="http://commondatastorage.googleapis.com/chromium-browser-snapshots/Linux_x64"
-CHROME_LATEST=`wget -q -O - "$CHROME_ROT/LAST_CHANGE"`
+CHROME_LATEST=`wget -q -O - "$CHROME_ROOT/LAST_CHANGE"`
 
 wget $CHROME_ROOT/$CHROME_LATEST/chromedriver_linux64.zip -P /tmp/
 unzip /tmp/chromedriver_linux64.zip -d /tmp/
