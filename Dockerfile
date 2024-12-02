@@ -1,5 +1,8 @@
 FROM public.ecr.aws/lambda/python:3.13
 
+ENV PYTHONUNBUFFERED=1
+ENV DISPLAY=:99
+
 RUN dnf install -y unzip wget
 
 # Install Chromium
